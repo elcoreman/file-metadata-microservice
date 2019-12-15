@@ -15,7 +15,11 @@ app.get("/", (req, res) => {
 });
 
 app.post("/api/fileanalyse", upload.single("upfile"), (req, res) => {
-  res.json({ greetings: req.file.size });
+  res.json({
+    name: req.file.originalname,
+    type: req.file.mimetype,
+    size: req.file.size
+  });
 });
 
 app.listen(process.env.PORT || 3000, () => {
